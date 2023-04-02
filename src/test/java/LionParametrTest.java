@@ -6,6 +6,7 @@ import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 @RunWith(Parameterized.class)
 public class LionParametrTest {
@@ -21,8 +22,7 @@ public class LionParametrTest {
     public static Object[][] AllOfLions() {
         return new Object[][]{
                 {"Самец",true},
-                {"Самка", false},
-                {"Оно", false}
+                {"Самка", false}
         };
     }
 
@@ -33,6 +33,12 @@ public class LionParametrTest {
         Lion lionMale = new Lion(sex, feline);
         Boolean actual = lionMale.doesHaveMane();
         assertEquals(mane, actual);
+    }
+
+    @Test
+    public void anotherSexOfLion() {
+        Exception exception = assertThrows(Exception.class, () -> new Lion("Оно", feline));
+        assertEquals("Используйте допустимые значения пола животного - самей или самка", exception.getMessage());
     }
 
     @Test
@@ -50,14 +56,6 @@ public class LionParametrTest {
         Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> actual = lionFemale.getFood();
         assertEquals("Что-то не так", (List.of("Животные", "Птицы", "Рыба")), actual);
-    }
-
-
-    @Test
-    public void getFoodWithString() throws Exception {
-        Lion lionOne = new Lion("Самка", feline);
-        lionOne.getFood();
-        Mockito.verify(feline).getFood(Mockito.anyString());
     }
 }
 

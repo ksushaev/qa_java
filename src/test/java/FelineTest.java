@@ -1,6 +1,4 @@
 import com.example.Feline;
-import com.example.Lion;
-import com.example.Predator;
 import org.junit.Test;
 
 import java.util.List;
@@ -31,6 +29,6 @@ public class FelineTest {
     @Test
     public void eatMeatTest() throws Exception {
         List<String> actual = feline.eatMeat();
-        assertEquals("Что-то  не так", List.of("Животные", "Птицы", "Рыба"), actual);
+        assertEquals("Еда хищника не соответствует", List.of("Животные", "Птицы", "Рыба"), actual);
     }
 }
