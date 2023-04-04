@@ -35,11 +35,6 @@ public class LionParametrTest {
         assertEquals(mane, actual);
     }
 
-    @Test
-    public void anotherSexOfLion() {
-        Exception exception = assertThrows(Exception.class, () -> new Lion("Оно", feline));
-        assertEquals("Используйте допустимые значения пола животного - самей или самка", exception.getMessage());
-    }
 
     @Test
     public void getKittens() throws Exception {
